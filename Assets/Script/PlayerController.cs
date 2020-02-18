@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
 	private float currBar;
 	private bool activated;
 
+	public float CurrBar { get => currBar; set => currBar = value; }
+	public bool Activated { get => activated; set => activated = value; }
+	public float MaxBar { get => maxBar; set => maxBar = value; }
+	public float MinBar { get => minBar; set => minBar = value; }
+
 	// Tombol untuk menggerakkan ke atas
 	public KeyCode upButton = KeyCode.W;
 
@@ -70,6 +75,10 @@ public class PlayerController : MonoBehaviour
 		{
 			gameObject.transform.localScale = new Vector2( 1f,2f);
 			CurrBar -= 10 * Time.deltaTime;
+			if (CurrBar < 0)
+			{
+				Activated = false;
+			}
 		}
 		else
 		{
@@ -110,9 +119,10 @@ public class PlayerController : MonoBehaviour
 		{
 			float botSpeed = speed;
 			float ballPosX = GameObject.Find("Ball").gameObject.transform.position.x;
+			float ballPosY = GameObject.Find("Ball").gameObject.transform.position.y;
 			if (ballPosX > -6.75 && ballPosX < transform.position.x)
 			{
-				if (ball.transform.position.x < -10)
+				if (ball.transform.position.x < -5)
 				{
 					botSpeed = speed - 5;
 				}
@@ -130,7 +140,15 @@ public class PlayerController : MonoBehaviour
 					velocity.y = 0.0f;
 				}
 			}
-			
+
+			if (currBar == 100)
+			{
+				if(ball.transform.position.x > 5 && Mathf.Abs(ballPosY-transform.position.y)>9)
+				{
+					Activated = true;
+				}
+			}
+
 		}
 		
 
@@ -196,10 +214,6 @@ public class PlayerController : MonoBehaviour
 		get { return trajectoryOrigin; }
 	}
 
-	public float CurrBar { get => currBar; set => currBar = value; }
-	public bool Activated { get => activated; set => activated = value; }
-	public float MaxBar { get => maxBar; set => maxBar = value; }
-	public float MinBar { get => minBar; set => minBar = value; }
 
 	// Ketika bola beranjak dari sebuah tumbukan, rekam titik tumbukan tersebut
 	private void OnCollisionExit2D(Collision2D collision)

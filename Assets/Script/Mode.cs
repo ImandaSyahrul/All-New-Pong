@@ -8,6 +8,7 @@ public class Mode : MonoBehaviour
 	public GameObject player2;
 	public GameObject ball;
 	public GameObject screenOpponent;
+	//public GameObject powerUp;
 	public GameObject gameManager;
 	PlayerController playerControl;
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class Mode : MonoBehaviour
 		ball.SetActive(true);
 		screenOpponent.SetActive(false);
 		gameManager.SetActive(true);
+		//Destroy(powerUp);
 	}
 
 }
