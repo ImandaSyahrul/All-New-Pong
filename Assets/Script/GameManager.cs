@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		
+		if (Input.GetKeyDown("Enter")) Application.Quit(); // Quit game
 		bar1.value = player1.CurrBar;
 		bar2.value = player2.CurrBar;
 		if (player1.Score == maxScore)
