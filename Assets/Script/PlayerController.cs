@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
 			{
 				if (ball.transform.position.x < -5)
 				{
-					botSpeed = speed - 5;
+					botSpeed = speed - 7;
 				}
 				else botSpeed = speed;
 				if (ball.transform.position.y > this.gameObject.transform.position.y + 1f)
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		// Jika posisi raket melewati batas bawah (-yBoundary), kembalikan ke batas atas tersebut.
-		else if (position.y < -yBoundary)
+		if (position.y < -yBoundary)
 		{
 			position.y = -yBoundary;
 		}
